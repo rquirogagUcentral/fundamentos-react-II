@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Gato =(props) => (
+  <div>
+    <h1>Gato 🐈</h1>
+    <pre>
+      {JSON.stringify(props, null, 4)}
+    </pre>
+  </div>
+)
+
+class App extends Component
+{
+  state = {
+    fuerza: 100,
+    vidasRestantes: 7,
+    name: 'Gatituu'
+  }
+  render(){
+    const otrosDatos = {
+      raza: 'Tropical',
+      comidasDiarias: 3
+    }
+    return (
+      <div>
+        <Gato 
+          name='Gardfield'
+          age= '2 años'
+          //Objeto OtrosDatos anidado en el JSON.stringify
+          //otrosDatos={otrosDatos}
+          /*RESULTADO
+          {
+            "name": "Gardfield",
+            "age": "2 años"
+          }
+           */
+          //Obteniendo datos en el mismo nivel , 
+          //opción llamando obj uno a uno 
+          /*raza={otrosDatos.raza}
+          comidasDiarias={otrosDatos.comidasDiarias}
+          RESULTADO
+          {
+            "name": "Gardfield",
+            "age": "2 años",
+            "raza": "Tropical",
+            "comidasDiarias": 3
+          }
+          */
+          //Obtener datos de OtrosDatos con la propiedad spread
+          { ...otrosDatos }
+          /*
+            RESULTADO
+            "name": "Gardfield",
+            "age": "2 años",
+            "raza": "Tropical",
+            "comidasDiarias": 3
+          }
+           */
+          { ...this.state}
+        />
+      </div>
+    )
+  }
 }
+
 
 export default App;
